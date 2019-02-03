@@ -28,8 +28,11 @@ public class CourseController {
     @Value("${AuthServiceIp}")
     private String authServiceIp;
 
+    @Value("${AuthServicePort}")
+    private String authServicePort;
+
     private String getRole(String jwttoken){
-        final String uri = "http://"+authServiceIp+":8080/getRole";
+        final String uri = "http://"+authServiceIp+":"+authServicePort+"/getRole";
         System.out.println(jwttoken);
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(jwttoken);
