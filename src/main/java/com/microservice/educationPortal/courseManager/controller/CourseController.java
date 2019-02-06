@@ -38,7 +38,7 @@ public class CourseController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String addCourse(String jwttoken, @RequestBody Course course) {
-        if(getRole(jwttoken).equals("ROLE_ADMIN")) {
+        if(getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")) {
             repository.save(course);
             return "ok";
         }
@@ -48,7 +48,7 @@ public class CourseController {
 
     @RequestMapping(value = "/edit")
     public String editCourse(String jwttoken, @RequestBody Course course){
-        if (getRole(jwttoken).equals("ROLE_ADMIN")) {
+        if (getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")) {
             if (repository.existsById(course.getId())) {
                 repository.save(course);
                 return "ok";
@@ -61,7 +61,7 @@ public class CourseController {
 
     @RequestMapping(value = "/remove")
     public String removeCourse(String jwttoken, @RequestBody int id){
-        if (getRole(jwttoken).equals("ROLE_ADMIN")){
+        if (getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")){
             if(repository.existsById(id)){
                 repository.deleteById(id);
                 return "removed";
