@@ -1,4 +1,4 @@
-package com.microservice.courseTaking.courseManager.model;
+package com.microservice.educationPortal.courseManager.model;
 
 public class MyTest {
     private int id;

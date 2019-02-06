@@ -1,10 +1,8 @@
-package com.microservice.courseTaking.courseManager.repository;
+package com.microservice.educationPortal.courseManager.repository;
 
-import com.microservice.courseTaking.courseManager.model.Course;
+import com.microservice.educationPortal.courseManager.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Integer> {

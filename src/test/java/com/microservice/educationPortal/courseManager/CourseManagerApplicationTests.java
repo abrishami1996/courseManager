@@ -1,4 +1,4 @@
-package com.microservice.courseTaking.courseManager;
+package com.microservice.educationPortal.courseManager;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

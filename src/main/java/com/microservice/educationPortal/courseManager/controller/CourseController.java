@@ -1,21 +1,14 @@
-package com.microservice.courseTaking.courseManager.controller;
+package com.microservice.educationPortal.courseManager.controller;
 
-import com.microservice.courseTaking.courseManager.model.Course;
-import com.microservice.courseTaking.courseManager.repository.CourseRepository;
+import com.microservice.educationPortal.courseManager.repository.CourseRepository;
+import com.microservice.educationPortal.courseManager.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-
-//@ResponseStatus(value = HttpStatus.NOT_FOUND)
-//class ResourceNotFoundException extends RuntimeException {
-//
-//}
 
 
 @RestController
@@ -85,7 +78,6 @@ public class CourseController {
             return "ok";
         }
         else{
-            //throw new ResourceNotFoundException();
             return "not found";
         }
     }

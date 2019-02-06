@@ -1,6 +1,6 @@
-package com.microservice.courseTaking.courseManager.model;
+package com.microservice.educationPortal.courseManager.model;
 
-import com.microservice.courseTaking.courseManager.exceptions.NotProvidedInitialValueException;
+import com.microservice.educationPortal.courseManager.exceptions.NotProvidedInitialValueException;
 
 import javax.persistence.*;
 import java.util.Objects;
