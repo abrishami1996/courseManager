@@ -10,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 
 @RestController
 public class CourseController {
@@ -32,7 +34,7 @@ public class CourseController {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         String s = restTemplate.exchange(uri, HttpMethod.GET,entity,String.class).getBody().toString();
-        return s;
+        return s.substring(1,s.length() -1);
     }
 
 
@@ -82,5 +84,9 @@ public class CourseController {
         }
     }
 
+    @RequestMapping(value = "/getListOfCourses")
+    public List<Course> getListOfCourses(){
+        return repository.findAll();
+    }
 
 }

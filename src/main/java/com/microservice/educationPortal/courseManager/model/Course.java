@@ -100,11 +100,11 @@ public class Course {
         this.professorId = professorId;
     }
 
-    @Override
-    public String toString() {
-
-        return "Course:" + this.id +":" + this.name;
-    }
+//    @Override
+//    public String toString() {
+//
+//        return "Course:" + this.id +":" + this.name;
+//    }
 
     public int getYear() {
         return year;
@@ -133,5 +133,8 @@ public class Course {
         this.semester = semester;
         this.classroom = classroom;
         this.professorId = professorId;
+    }
+
+    public Course() {
     }
 }
