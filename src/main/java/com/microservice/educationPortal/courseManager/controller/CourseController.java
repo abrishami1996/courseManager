@@ -48,7 +48,7 @@ public class CourseController {
 
     }
 
-    @RequestMapping(value = "/edit")
+    @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public String editCourse(String jwttoken, @RequestBody Course course){
         if (getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")) {
             if (repository.existsById(course.getId())) {
@@ -62,7 +62,8 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/remove")
-    public String removeCourse(String jwttoken, @RequestBody int id){
+    public String removeCourse(String jwttoken, int id){
+        System.out.println("helllo");
         if (getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")){
             if(repository.existsById(id)){
                 repository.deleteById(id);
