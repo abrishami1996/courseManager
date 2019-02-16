@@ -17,7 +17,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
+    @Column(unique = true)
     private int code;
 
     @Column

@@ -41,6 +41,12 @@ public class CourseController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String addCourse(String jwttoken, @RequestBody Course course) {
         if(getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")) {
+            if(course.getCode() <=0 || course.getName()==null){
+                return "invalid course";
+            }
+            if(repository.findByCode(course.getCode())!=null){
+                return "course exists";
+            }
             repository.save(course);
             return "ok";
         }
@@ -51,7 +57,9 @@ public class CourseController {
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public String editCourse(String jwttoken, @RequestBody Course course){
         if (getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")) {
-            if (repository.existsById(course.getId())) {
+            Course c =repository.findByCode(course.getCode());
+            if ( c!= null) {
+                course.setId(c.getId());
                 repository.save(course);
                 return "ok";
             }
@@ -62,11 +70,11 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/remove")
-    public String removeCourse(String jwttoken, int id){
+    public String removeCourse(String jwttoken, int courseCode){
         System.out.println("helllo");
         if (getRole(jwttoken).equals("ROLE_ADMIN") || getRole(jwttoken).equals("ROLE_EMPLOYEE")){
-            if(repository.existsById(id)){
-                repository.deleteById(id);
+            if(repository.findByCode(courseCode) != null){
+                repository.deleteByCode(courseCode);
                 return "removed";
             }
             return "Not Found";
@@ -76,8 +84,8 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/exists")
-    public String courseExists(Integer courseid){
-        if(repository.findByid(courseid) != null){
+    public String courseExists(Integer courseCode){
+        if(repository.findByCode(courseCode) != null){
             return "ok";
         }
         else{
